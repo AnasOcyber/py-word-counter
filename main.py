@@ -12,7 +12,7 @@ def count_words(text):
 
 
 def print_result(result):
-    for item in result:
+    for item in sorted(result.items(), key=lambda item: item[1], reverse=True):
         print(f"'{item[0]}' appeared {item[1]} times.")
 
 
@@ -37,7 +37,7 @@ if path.exists():
     else:
         result = count_words(text)
 
-    print_result(sorted(result.items()))
+    print_result(result)
 
 
 else:
