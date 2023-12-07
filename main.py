@@ -13,7 +13,7 @@ def count_words(text):
 
 def print_result(result):
     for item in result:
-        print(f"'{item}' appeared {result[item]} times.")
+        print(f"'{item[0]}' appeard {item[1]} times.")
 
 
 file_path = input("File path: ")
@@ -37,7 +37,8 @@ if path.exists():
     else:
         result = count_words(text)
 
-    print_result(result)
+    print_result(sorted(result.items()))
+
 
 else:
     print(f"\nThe file doesn't exist.")
