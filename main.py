@@ -13,7 +13,7 @@ def count_words(text):
 
 def print_result(result):
     for item in result:
-        print(f"'{item[0]}' appeard {item[1]} times.")
+        print(f"'{item[0]}' appeared {item[1]} times.")
 
 
 file_path = input("File path: ")
