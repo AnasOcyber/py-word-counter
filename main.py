@@ -1,19 +1,45 @@
 from pathlib import Path
 
-file_path = input("Paste the path to the text file: ")
+
+def count_words(text):
+    count = 1
+    for letter in text:
+        if letter not in result:
+            result[letter] = count
+        else:
+            result[letter] = result.get(letter) + 1
+    return result
+
+
+def print_result(result):
+    for item in result:
+        print(f"'{item}' appeared {result[item]} times.")
+
+
+file_path = input("File path: ")
 path = Path(file_path)
 
-text = path.read_text().lower()
+if path.exists():
+    text = path.read_text().lower()
+    result = {}
 
-count = 1
+    if input("Would you like to exclude any stop word (y/n)? ").lower() == 'y':
+        new_text = ""
+        words_to_exclude = input(
+            "What words do you want to exclude (seperate them by a space)? ")
+        words = words_to_exclude.split(' ')
+        words_to_exclude = text.split(' ')
+        for word in words_to_exclude:
+            if word not in words:
+                new_text += word
+        result = count_words(new_text)
 
-result = {}
-
-for letter in text:
-    if letter not in result:
-        result[letter] = count
     else:
-        result[letter] = result.get(letter) + 1
+        result = count_words(text)
 
-for item in result:
-    print(item, result[item])
+    print_result(result)
+
+else:
+    print(f"\nThe file doesn't exist.")
+    print("Make sure the path or the file name is correct.")
+    print(f"The path you provided is: '{path}'\n")
